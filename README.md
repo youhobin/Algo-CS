@@ -8,3 +8,4 @@
 - Day 3. Two Pointers (01.29)
 - Day 4. Two Pointers (01.30)
 - Day 5. Two Pointers (01.31)
+- Day 6. Sliding Window (02.01)
