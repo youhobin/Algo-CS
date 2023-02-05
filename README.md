@@ -13,3 +13,4 @@
 - Day 8. Breadth-First Search / Depth-First Search (02.02)
 - Day 9. Breadth-First Search / Depth-First Search (02.03)
 - Day 10. Recursion / Backtracking (02.04)
+- Day 11. Recursion / Backtracking (02.05)
