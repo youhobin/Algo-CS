@@ -14,3 +14,4 @@
 - Day 9. Breadth-First Search / Depth-First Search (02.03)
 - Day 10. Recursion / Backtracking (02.04)
 - Day 11. Recursion / Backtracking (02.05)
+- Day 12. Dynamic Programming (02.06)
