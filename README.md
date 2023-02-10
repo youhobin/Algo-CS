@@ -16,3 +16,4 @@
 - Day 11. Recursion / Backtracking (02.05)
 - Day 12. Dynamic Programming (02.06)
 - Day 13. Bit Manipulation (02.07)
+- Day 14. Bit Manipulation (02.08)
