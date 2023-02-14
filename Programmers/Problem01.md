@@ -148,3 +148,28 @@ class Solution {
     }
 }
 ```
+
+---
+
+#### 7. 피보나치 수 
+
+피보나치 수를 1234567으로 나눈 나머지를 리턴하기.
+dp를 이용해서 계속 재귀하지 않고, 값을 저장해뒀다가 사용.
+ - n이 커지면 오버플로우가 발생하므로 최종 return 값 뿐만아니라, 이전 결과를 계산하는 return 값에도 1234567로 나눠서 오버플로우를 방지한다.
+```java
+class Solution {
+    public int solution(int n) {
+        int[] dp = new int[n + 1];
+        return fibo(dp, n) % 1234567;
+    }
+    
+    public int fibo(int[] dp, int n) {
+        if(n == 0) return 0;
+        if(n == 1) return 1;
+        if(dp[n] != 0) {
+            return dp[n];
+        }
+        return dp[n] = fibo(dp, n-1) % 1234567 + fibo(dp, n-2) % 1234567;
+    }
+}
+```
