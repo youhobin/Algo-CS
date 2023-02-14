@@ -68,7 +68,7 @@ class Solution {
 
 ---
 
-### 4. JadenCase 문자열 만들기
+#### 4. JadenCase 문자열 만들기
 
 ```java
 class Solution {
@@ -91,6 +91,30 @@ class Solution {
             }
         }
         return sb.toString();
+    }
+}
+```
+
+---
+
+#### 5. 최솟값 만들기
+
+두 배열에서 각각 숫자를 한 개씩 꺼내 곱한 수의 합의 최솟값 구하기
+```java 
+import java.util.Arrays;
+
+class Solution {
+    public int solution(int []A, int []B) {
+        int answer = 0;
+        
+        Arrays.sort(A);
+        Arrays.sort(B);
+        
+        for(int i = 0; i < A.length; i++) {
+            answer += A[i] * B[A.length - i - 1];
+        }
+
+        return answer;
     }
 }
 ```
