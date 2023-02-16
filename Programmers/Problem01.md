@@ -173,3 +173,27 @@ class Solution {
     }
 }
 ```
+
+#### 8. 다음 큰 숫자
+
+2진수로 변환했을 때 1의 갯수가 같은 다음 큰 숫자. bitCount는 정수를 2진법으로 변환 후 1의 갯수를 반환해준다.
+```java
+class Solution {
+    public int solution(int n) {
+        int answer = 0;
+        int n_cnt = Integer.bitCount(n);
+        int b_cnt = 0;
+        
+        while(true){
+            n++;
+            b_cnt = Integer.bitCount(n);
+            if(n_cnt == b_cnt){
+                answer = n;
+                break;
+            }            
+        }
+                
+        return answer;
+    }
+}
+```
