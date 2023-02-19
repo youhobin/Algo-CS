@@ -75,7 +75,7 @@ class Solution {
 #### 3. 소수 찾기 `java`
 
 
-```
+```java
 import java.util.HashSet;
 class Solution {
     public int solution(String numbers) {
@@ -114,3 +114,32 @@ class Solution {
 ```
 
 ---
+
+#### 4. 피로도 `java`
+
+dfs. 전역변수로 visit boolean 배열 생성. 방문하면 true로 바꿔준 후 탐색이 끝나고 다시 false로 바꿔줌. dfs 함수 시작 부분에 탐색 조건문을 적고 시작. 탐색 할때 마다 depth값을 늘려줌.
+```java
+class Solution {
+    int count = 0;
+    boolean[] visit;
+    public int solution(int k, int[][] dungeons) {
+        
+        visit = new boolean[dungeons.length];
+        dfs(0, k, dungeons);
+        return count;
+    }
+    
+    private void dfs(int depth, int k, int[][] dungeons) {
+        for(int i = 0; i < dungeons.length; i++) {
+            if(visit[i] || dungeons[i][0] > k) {
+                continue;
+            }
+            visit[i] = true;
+            dfs(depth + 1, k - dungeons[i][1], dungeons);
+            visit[i] = false;
+        }
+        count = Math.max(count, depth);
+        
+    }
+}
+```
