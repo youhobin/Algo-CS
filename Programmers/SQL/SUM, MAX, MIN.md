@@ -16,3 +16,14 @@ ORDER BY PRICE desc limit 1
 ```
 
 ---
+
+#### 식품분류별 가장 비싼 식품의 정보 조회하기
+
+```
+SELECT CATEGORY, PRICE as max_price, PRODUCT_NAME FROM FOOD_PRODUCT
+where CATEGORY in ('과자', '국', '김치', '식용유') 
+and price in (select max(price) from food_product group by category)
+group by category
+having max(price)
+order by price desc
+```
