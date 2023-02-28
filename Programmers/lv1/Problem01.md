@@ -23,3 +23,45 @@ class Solution {
 
 ---
 
+#### 2. 신고 결과 받기
+
+풀이 : Map 에서 putIfAbsent 는 존재하지 않으면 추가하고, 존재하면 추가하지 않음. getOrDefault 는 존재하면 get 아니면 default 값 가져오기.
+다른 사람 풀이 : 처음에 report 배열에서 반복되는 것은 stream의 distinct로 제거하는거도 괜찮은듯.
+
+```java
+import java.util.*;
+
+class Solution {
+    public int[] solution(String[] id_list, String[] report, int k) {
+        int[] answer = new int[id_list.length];
+        
+        Map<String, HashSet<String>> reportSet = new HashMap<>();
+        Map<String, Integer> reportedNumber = new HashMap<>();
+        HashSet<String> reportMsg = new HashSet<>(Arrays.asList(report));
+        
+        for(String userId : reportMsg) {
+            String[] reportList = userId.split(" ");
+            String reporting = reportList[0];
+            String reported = reportList[1];
+            reportSet.putIfAbsent(reporting, new HashSet<String>(){{add(reported);}});
+            reportSet.get(reporting).add(reported);
+            reportedNumber.put(reported, reportedNumber.getOrDefault(reported, 0) + 1);
+        }
+        
+        for (String reported : reportedNumber.keySet()){
+            int reportedCount = reportedNumber.get(reported);
+            if(reportedCount >= k){
+            
+                for(int i=0; i<id_list.length; i++){
+                    if(reportSet.containsKey(id_list[i]) && reportSet.get(id_list[i]).contains(reported)) {
+                        answer[i]++;
+                    }
+                }
+            }
+        }
+           
+        return answer;
+    }
+        
+}
+```
