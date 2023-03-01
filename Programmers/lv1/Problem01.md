@@ -153,3 +153,42 @@ class Solution {
     }
 }
 ```
+
+--- 
+
+#### 5. 크레인 인형뽑기 게임
+
+
+```java
+import java.util.*;
+
+class Solution {
+    public int solution(int[][] board, int[] moves) {
+        int answer = 0;
+        Stack<Integer> stack = new Stack<>();
+        
+        for(int number : moves) {
+            for(int[] floor : board) {
+                if(floor[number - 1] == 0) continue;
+                if(!stack.empty()) {
+                    int curr = stack.peek();
+                    if(curr == floor[number - 1]) {
+                        stack.pop();
+                        floor[number - 1] = 0;
+                        answer += 2;
+                        break;
+                    }
+                    stack.push(floor[number - 1]);
+                    floor[number - 1] = 0;
+                    break;
+                }
+                stack.push(floor[number - 1]);
+                floor[number - 1] = 0;
+                break;
+            }
+        }
+        
+        return answer;
+    }
+}
+```
