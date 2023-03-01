@@ -65,3 +65,54 @@ class Solution {
         
 }
 ```
+
+---
+
+#### 3. 성격 유형 검사하기 
+
+풀이 : map에 put 을 할 때 키값이 같으면 덮어쓰기를 함  -> getOrDefault로 value를 바꿔줌. 
+반복문 이후에 if문을 하나씩 하기 보다 char [][] type = {{'R', 'T'}, {'C', 'F'}, {'J', 'M'}, {'A', 'N'}} 배열을 이용해서 이 배열의 key를 이용해 value 를 비교하는 방법이 좋은듯.
+```java
+import java.util.*;
+
+class Solution {
+    public String solution(String[] survey, int[] choices) {
+        String answer = "";
+        HashMap<Character, Integer> result = new HashMap<>();
+        
+        for(int i = 0; i < choices.length; i++) {
+            if(choices[i] - 4 > 0) {
+                result.put(survey[i].charAt(1), result.getOrDefault(survey[i].charAt(1), 0) + choices[i] - 4);
+            } else if (choices[i] - 4 < 0) {
+                result.put(survey[i].charAt(0), result.getOrDefault(survey[i].charAt(0), 0) + 4 - choices[i]);
+            }
+        }
+        
+        if(result.getOrDefault('T', 0) > result.getOrDefault('R', 0)) {
+            answer += "T";
+        } else {
+            answer += "R";
+        }
+        
+        if(result.getOrDefault('F', 0) > result.getOrDefault('C', 0)) {
+            answer += "F";
+        } else {
+            answer += "C";
+        }
+        
+        if(result.getOrDefault('M', 0) > result.getOrDefault('J', 0)) {
+            answer += "M";
+        } else {
+            answer += "J";
+        }
+        
+        if(result.getOrDefault('N', 0) > result.getOrDefault('A', 0)) {
+            answer += "N";
+        } else {
+            answer += "A";
+        }
+        
+        return answer;
+    }
+}
+```
