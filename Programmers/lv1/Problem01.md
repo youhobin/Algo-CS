@@ -116,3 +116,40 @@ class Solution {
     }
 }
 ```
+
+---
+
+#### 4. 신규아이디 추천
+
+풀이 : 정규표현식이 어려움. 주석에 있는 부분부터 공부하기. string 비교시 equals 사용 ( == 비교시 런타임에러 발생. -> 공부해보기)
+```java
+class Solution {
+    public String solution(String new_id) {
+        String answer = new_id.toLowerCase();
+        
+        // -_.소문자 숫자 가 아닌거를 "" 로 바꾸기. 
+        answer = answer.replaceAll("[^-_.a-z0-9]","");
+        
+        //[.]의 갯수가 {2이상 , 이하}를 "."로 바꾸기.
+        answer = answer.replaceAll("[.]{2,}", ".");
+        
+        //.으로 시작 또는 .으로 끝나는 거 ""로 바꾸기
+        answer = answer.replaceAll("^[.]|[.]$", "");
+        
+        if(answer.equals("")) answer += "a";
+        
+        if(answer.length() > 15) {
+            answer = answer.substring(0,15);
+            answer = answer.replaceAll("[.]$", "");
+        }
+        
+        if(answer.length() <= 2) {
+            while (answer.length() < 3) {
+                answer += answer.charAt(answer.length()-1);
+            }
+        }
+        
+        return answer;
+    }
+}
+```
