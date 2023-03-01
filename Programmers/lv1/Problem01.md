@@ -192,3 +192,35 @@ class Solution {
     }
 }
 ```
+
+---
+
+#### 6. 로또의 최고 순위와 최저 순위
+
+풀이 : Math.min을 이용해서 마지막 계산. 좋은듯
+```java
+class Solution {
+    public int[] solution(int[] lottos, int[] win_nums) {
+        int[] answer = new int[2];
+        int correctCount = 0;
+        int zeroCount = 0;
+        for(int lotto : lottos) {
+            if(lotto == 0) {
+                zeroCount++;
+                continue;
+            }
+            for(int win_num : win_nums) {
+                if(lotto == win_num) {
+                    correctCount++;
+                    break;
+                }
+            }
+        }
+        int min = correctCount;
+        int max = correctCount + zeroCount;
+        answer[0] = Math.min(7-max, 6);
+        answer[1] = Math.min(7-min, 6);
+        return answer;
+    }
+}
+```
