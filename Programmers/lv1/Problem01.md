@@ -224,3 +224,56 @@ class Solution {
     }
 }
 ```
+
+---
+
+#### 7. 실패율
+
+풀이 : 실패율 값을 List와 배열 두개에 담아서 리스트를 내림차순으로 정렬.
+```java
+import java.util.*;
+
+class Solution {
+    public int[] solution(int N, int[] stages) {
+        int[] answer = new int[N];
+        double[] failRate = new double[N + 1];
+        
+        for(int stage : stages) {
+            if(stage == N + 1) continue;
+            failRate[stage]++;
+        }
+        
+        
+        ArrayList<Double> fail = new ArrayList<Double>();
+        double challenge = stages.length;
+        for(int i = 1; i < failRate.length; i++) {
+            if(challenge == 0) {
+                failRate[i] = 0;
+            } else {
+                double tmp = failRate[i];
+                failRate[i] = failRate[i] / (challenge);
+                challenge =  challenge - tmp;
+            }
+            fail.add(failRate[i]);
+        }
+        
+        for(double a : failRate) {
+            System.out.println(a);
+        }
+        
+        Collections.sort(fail, Collections.reverseOrder());
+
+        for(int i=0; i<fail.size(); i++) {
+            for(int j=1; j<failRate.length; j++) {
+                if(fail.get(i) == failRate[j]) {
+                    answer[i] = j;
+                    failRate[j] = -1;
+                    break;
+                }
+            }
+        }
+        
+        return answer;
+    }
+}
+```
