@@ -301,3 +301,30 @@ class Solution {
     }
 }
 ```
+
+---
+
+#### 9. K번째수
+
+풀이 : Arrays.copyOfRange 이용하면 배열 복사 할때 더 간편한듯.
+```java
+import java.util.*;
+
+class Solution {
+    public int[] solution(int[] array, int[][] commands) {
+        int[] answer = new int[commands.length];
+        
+        for(int i = 0; i < commands.length; i++) {
+            int[] subList = new int[commands[i][1] - commands[i][0] + 1];
+            
+            for(int j = 0; j < subList.length; j++) {
+                subList[j] = array[commands[i][0] + j - 1];
+            }
+            
+            Arrays.sort(subList);
+            answer[i] = subList[commands[i][2] - 1];
+        }
+        return answer;
+    }
+}
+```
