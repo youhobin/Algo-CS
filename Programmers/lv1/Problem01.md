@@ -328,3 +328,22 @@ class Solution {
     }
 }
 ```
+
+---
+
+#### 10. 숫자 문자열과 영단어
+
+```java
+class Solution {
+    public int solution(String s) {
+        int answer = 0;
+        String[] en = {"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
+        for(int i = 0; i < 10; i++) {
+
+            s = s.replaceAll(en[i], String.valueOf(i));
+        }
+        answer = Integer.valueOf(s);
+        return answer;
+    }
+}
+```
